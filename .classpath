@@ -25,5 +25,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/HSQLDB"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/StringUtils"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

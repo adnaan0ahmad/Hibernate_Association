@@ -2,6 +2,13 @@ package com.java.CrudOperationsDemo;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Adnaan
+ *
+ *
+ */
+
 public interface Operations <T> {
 	
 	public boolean add(T t);
@@ -14,7 +21,6 @@ public interface Operations <T> {
 	
 	public boolean delete (int primaryKey);
 	
-	public List<T> search(String criteria);
+	public List<T> searchOnCriteria(T t, SearchCriteria... criteria);
 
-	public List<T> search(int criteria);
 }

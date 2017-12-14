@@ -5,20 +5,20 @@ public class CrudDemo {
 	public static void main(String[] args) {
 	
 		Operations<Student> op = new StudentOperations();
+	
 		
 		Student s1 = new Student(101, "Monkey", 10, "Pune");
 		Student s2 = new Student(102, "Dog", 12, "Mumbai");
 		Student s3 = new Student(103, "Tiger", 45, "Chennai");
 		Student s4 = new Student(104, "Lion", 1, "Germany");
-		Student s5 = new Student(105, "Horse", 66, "Mumbai");
+		Student s5 = new Student(105, "Horse", 66, "Mumbai");			//----- Horse, Mumbai
 		Student s6 = new Student(106, "Camel", 23, "UAE");
 		Student s7 = new Student(107, "Goat", 78, "Delhi");
 		Student s8 = new Student(108, "Leopard", 32, "Hyderabad");
 		Student s9 = new Student(109, "Donkey", 90, "US");
-		Student s10 = new Student(110, "Cat", 16, "Mumbai");
-	
+		Student s10 = new Student(110, "Horse", 16, "Mumbai");		//----- Horse, Mumbai
 		
-		
+		Student s11 = new Student(110, "Horse", 66, "Mumbai");
 		
 		/*-----C-----------Creating/Adding Objects to DB----------------*/
 		
@@ -29,14 +29,15 @@ public class CrudDemo {
 		/*-----R-----------Reading Objects from DB----------------*/
 		
 		//System.out.println(op.get(102));
-		//System.out.println(op.getAll());
+		/*for(Student s : op.getAll())
+		System.out.println(s);*/
 		
 
 		/*-----U-----------Updating Objects in DB----------------*/
 		
-		/*s2.setStudAddress("NaviMumbai");*/
-		//System.out.println(op.update(s2));
-		
+		//s10.setStudName("Horse");
+		//s7.setStudRoll(78);
+		//System.out.println(op.update(s10));
 		
 		/*-----D-----------Deleting Objects in DB----------------*/
 		
@@ -46,8 +47,8 @@ public class CrudDemo {
 		
 		/*-----S-----------Searching Objects in DB----------------*/
 		
-		//System.out.println(op.search("Mumbai"));
-		//System.out.println(op.search(45));
+		System.out.println(op.searchOnCriteria(s11, SearchCriteria.ADDRESS, SearchCriteria.NAME));
+		
 		
 	}
 
