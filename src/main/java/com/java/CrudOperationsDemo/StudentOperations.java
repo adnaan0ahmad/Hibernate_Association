@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-
 public class StudentOperations implements Operations<Student> {
 
 	public static void dataValidator(Student s) {
@@ -109,16 +108,25 @@ public class StudentOperations implements Operations<Student> {
 		if (criteria.length <= 0 || criteria.length > 3)
 			throw new InvalidDataQueryException("Invalid number of search parameters passed.");
 
+		for (int i = 0; i < criteria.length - 1; i++) {
+			if (criteria[i].equals(criteria[i + 1]))
+				throw new InvalidDataQueryException("Same search parameters used.");
+		}
+
 		List<Student> l = new ArrayList<Student>();
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = s.beginTransaction();
 		Criteria cr = s.createCriteria(Student.class);
 
 		if (criteria.length == 3) {
-			cr.add(Restrictions.eq("studName", t.getStudName()));
-			cr.add(Restrictions.eq("studAddress", t.getStudAddress()));
-			cr.add(Restrictions.eq("studRoll", t.getStudRoll()));
-			return cr.list();
+			if (criteria[0].equals(criteria[2]))
+				throw new InvalidDataQueryException("Same search parameters used.");
+			else {
+				cr.add(Restrictions.eq("studName", t.getStudName()));
+				cr.add(Restrictions.eq("studAddress", t.getStudAddress()));
+				cr.add(Restrictions.eq("studRoll", t.getStudRoll()));
+				return cr.list();
+			}
 		}
 
 		else if (criteria.length == 2) {
@@ -137,7 +145,6 @@ public class StudentOperations implements Operations<Student> {
 					l = cr.list();
 					break;
 
-				case NAME:
 				case ALL:
 					throw new InvalidDataQueryException(
 							"Second Search Parameter Invalid. Please enter a different Second criteria");
@@ -162,7 +169,6 @@ public class StudentOperations implements Operations<Student> {
 					l = cr.list();
 					break;
 
-				case ADDRESS:
 				case ALL:
 					throw new InvalidDataQueryException(
 							"Second Search Parameter Invalid. Please enter a different Second criteria");
@@ -188,7 +194,6 @@ public class StudentOperations implements Operations<Student> {
 					l = cr.list();
 					break;
 
-				case ROLLNUMBER:
 				case ALL:
 					throw new InvalidDataQueryException(
 							"Second Search Parameter Invalid. Please enter a different Second criteria");
@@ -204,7 +209,6 @@ public class StudentOperations implements Operations<Student> {
 				case NAME:
 				case ADDRESS:
 				case ROLLNUMBER:
-				case ALL:
 					throw new InvalidDataQueryException("'ALL' search criteria cannot have a second parameter");
 
 				default:
