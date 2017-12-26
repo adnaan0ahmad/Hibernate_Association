@@ -5,7 +5,7 @@
 
 <hibernate-configuration>
 	<session-factory>
-	
+
 		<!-- SQL Dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
 		<!-- <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property> -->
@@ -15,9 +15,9 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/myDemoDB</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">admin@123</property>
-		
-		<property name="hibernate.hbm2ddl.auto">validate</property> 
-		
+
+		<property name="hibernate.hbm2ddl.auto">create-drop</property>
+
 		<!-- To show the queries fired in SQL DB -->
 		<property name="show_sql">true</property>
 
@@ -25,7 +25,15 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<!-- Mapping With Model Class Containing Annotations -->
-		<mapping class="com.java.CrudOperationsDemo.Student" 	/>
-		
+		<!-- <mapping class="com.java.Inheritance.Parent" /> <mapping class="com.java.Inheritance.Child1" 
+			/> <mapping class="com.java.Inheritance.Child2" /> -->
+
+		<mapping class="com.java.Mapping.Author" />
+		<mapping class="com.java.Mapping.Book" />
+
+
+
+
+
 	</session-factory>
 </hibernate-configuration>
